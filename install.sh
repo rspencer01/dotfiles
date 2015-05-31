@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#sudo apt-get update
+sudo apt-get update
 
 ./install-misc.sh
 ./install-i3.sh
