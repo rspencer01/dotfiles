@@ -9,3 +9,7 @@ sudo apt-get update
 
 ln -s dotfiles/.bashrc ~/.bashrc
 source ~/.bashrc
+
+echo "You may wish to install (not implemented yet)"
+echo "============================================="
+echo " * remind"
