@@ -179,7 +179,6 @@ bindsym Mod4+F1 exec firefox
 bindsym Mod4+F2 exec pavucontrol
 bindsym Mod4+F3 exec nautilus
 
-exec --no-startup-id "watch -n 1 /home/robert/.i3/background.sh"
 exec --no-startup-id ~/.i3/background.sh
 exec --no-startup-id dropbox start 
 

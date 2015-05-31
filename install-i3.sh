@@ -4,7 +4,7 @@
 #sudo apt-get update
 #sudo apt-get --allow-unauthenticated install sur5r-keyring
 #sudo apt-get update
-#sudo apt-get install i3
+#sudo apt-get install i3 pavucontrol imagemagic xautolock
 
 rm ~/.i3 -r
 ln -s dotfiles/.i3 ~/.i3
