@@ -29,3 +29,6 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
+syntax on
+set backspace=2
+set scrolloff=5
