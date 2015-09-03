@@ -32,3 +32,7 @@ set splitright
 syntax on
 set backspace=2
 set scrolloff=5
+
+au BufNewFile,BufRead *.less set filetype=less
+
+hi  Folded ctermbg=8
