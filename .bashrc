@@ -40,6 +40,12 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 
+if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+  export TERM='xterm-256color'
+else
+  export TERM='xterm-color'
+fi
+
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
@@ -122,7 +128,12 @@ function up {
 
 ### My programs
 export PATH=$PATH:/home/robert/bin:.
+export LD_LIBRARY_PATH=/usr/local/lib
+export EDITOR=vim
+export ANSIBLE_NOCOWS=1
 
 ### My own custom reminder script
 remind
 
+PERL_MB_OPT="--install_base \"/home/robert/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/robert/perl5"; export PERL_MM_OPT;
