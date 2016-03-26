@@ -18,7 +18,7 @@ set wildmenu
 set incsearch
 set hlsearch
 
-set foldlevelstart=10
+set foldlevelstart=99
 set foldmethod=indent
 set foldignore=
 
@@ -32,3 +32,5 @@ set splitright
 syntax on
 set backspace=2
 set scrolloff=5
+
+au BufNewFile,BufRead *.less set filetype=css
