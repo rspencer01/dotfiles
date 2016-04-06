@@ -10,6 +10,11 @@ set expandtab
 filetype indent on
 
 set cursorline
+augroup CursorLineOnlyInActiveWindow
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
 
 set wildmenu
 
@@ -28,6 +33,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
+match ErrorMsg "\s\+$"
 
 syntax on
 set backspace=2
