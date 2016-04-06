@@ -34,3 +34,5 @@ set backspace=2
 set scrolloff=5
 
 au BufNewFile,BufRead *.less set filetype=css
+
+hi  Folded ctermbg=8
