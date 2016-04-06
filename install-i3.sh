@@ -4,7 +4,10 @@ echo "deb http://debian.sur5r.net/i3/ $(lsb_release -c -s) universe" | sudo tee 
 sudo apt-get update
 sudo apt-get --allow-unauthenticated install sur5r-keyring
 sudo apt-get update
-sudo apt-get install i3 pavucontrol imagemagic xautolock
+sudo apt-get install xautolock
+sudo apt-get install imagemagic
+sudo apt-get install pavucontrol
+sudo apt-get install i3 
 
 rm ~/.i3 -r
 ln -s dotfiles/.i3 ~/.i3

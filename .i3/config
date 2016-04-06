@@ -169,7 +169,6 @@ bar {
         status_command i3status
         font pango: System San Francisco 10,Font Awesome 10
         workspace_buttons yes
-        position bottom
         colors
         {
           background $base00
@@ -210,7 +209,7 @@ bindsym Mod4+F2 exec pavucontrol
 bindsym Mod4+F3 exec nautilus
 
 exec --no-startup-id ~/.i3/background.sh
-exec --no-startup-id dropbox start 
+exec --no-startup-id sleep 10; dropbox start
 
 workspace_auto_back_and_forth yes
 
