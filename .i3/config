@@ -169,7 +169,6 @@ bar {
         status_command i3status
         font pango: System San Francisco 10,Font Awesome 10
         workspace_buttons yes
-        tray_output primary
         position bottom
         colors
         {
