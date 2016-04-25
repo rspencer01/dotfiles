@@ -1,4 +1,10 @@
+" Install all our plugins
+execute pathogen#infect()
+
 imap jj <esc>
+
+" Remember a longer history
+set history=1000
 
 set number
 
@@ -17,11 +23,13 @@ augroup CursorLineOnlyInActiveWindow
 augroup END
 
 set wildmenu
-
-"set showmatch
+" Don't scroll though these files
+set wildignore=*.o,*~,*.pyc
 
 set incsearch
 set hlsearch
+" Ignore case when searching
+set ignorecase
 
 set foldlevelstart=99
 set foldmethod=indent
@@ -39,6 +47,21 @@ syntax on
 set backspace=2
 set scrolloff=5
 
+" Always show the status line
+set laststatus=2
+
+" Easy paste mode
+map <leader>pp :setlocal paste!<cr>
+
 au BufNewFile,BufRead *.less set filetype=css
 
 hi  Folded ctermbg=8
+
+" Easy way to resize splits
+nmap <C-O> :vertical resize +5<CR>
+nmap <C-Y> :vertical resize -5<CR>
+nmap <C-I> :resize -5<CR>
+nmap <C-U> :resize +5<CR>
+
+set lazyredraw
+
