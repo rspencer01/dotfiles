@@ -57,6 +57,12 @@ au BufNewFile,BufRead *.less set filetype=css
 
 hi  Folded ctermbg=8
 
+" Use my colorscheme (a slight variation on molokai)
+colorscheme my-molokai
+
+" Lets assume we are in a 256 color terminal, shall we?
+set t_Co=256
+
 " Easy way to resize splits
 nmap <C-O> :vertical resize +5<CR>
 nmap <C-Y> :vertical resize -5<CR>
