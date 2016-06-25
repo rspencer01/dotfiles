@@ -120,7 +120,56 @@ if ! shopt -oq posix; then
 fi
 
 ### Custom prompt
-PS1="\[\033[35m\]\t\[\033[m\]-\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\] \[\033[0;34m\]\$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed 's: ::g')f \[\033[0;33m\]\$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //') \[\033[0m\]\$ "
+# regular colors
+bash_prompt()
+{
+  local K="\[\033[0;30m\]"    # black
+  local R="\[\033[0;31m\]"    # red
+  local G="\[\033[0;32m\]"    # green
+  local Y="\[\033[0;33m\]"    # yellow
+  local B="\[\033[0;34m\]"    # blue
+  local M="\[\033[0;35m\]"    # magenta
+  local C="\[\033[0;36m\]"    # cyan
+  local W="\[\033[0;37m\]"    # white
+  # emphasized (bolded) colors
+  local BK="\[\033[1;30m\]"
+  local BR="\[\033[1;31m\]"
+  local BG="\[\033[1;32m\]"
+  local BY="\[\033[1;33m\]"
+  local BB="\[\033[1;34m\]"
+  local BM="\[\033[1;35m\]"
+  local BC="\[\033[1;36m\]"
+  local BW="\[\033[1;37m\]"
+  prmptDate="$BK┌($M\t$BK)"
+  prmptUserHost="$BK($C\u$W@$G\h$BK)"
+  prmptWd="$BK($BY\w$BK)"
+  prmptGitBranchCmd='__git_ps1 && __git_ps1 (%s)'
+  prmptEndDollar="\n└─┤$W "
+  # No space before
+  function parse_git_dirty {
+    [[ $(git status --porcelain 2> /dev/null | tail -n1) != "" ]] && echo -n "$R" || echo -n "$G"
+  }
+  function git_branch {
+    local git_status="$(git status 2> /dev/null)"
+    local on_branch="On branch ([^${IFS}]*)"
+    local on_commit="HEAD detached at ([^${IFS}]*)"
+
+    if [[ $git_status =~ $on_branch ]]; then
+      local branch=${BASH_REMATCH[1]}
+      echo -n "$BK─("
+      parse_git_dirty
+      echo "$branch$BK) "
+    elif [[ $git_status =~ $on_commit ]]; then
+      local commit=${BASH_REMATCH[1]}
+      echo -n "$BK─("
+      parse_git_dirty
+      echo "$commit$BK) "
+    fi
+  }
+  PS1="\n$prmptDate─$prmptUserHost─$prmptWd$(git_branch)$prmptEndDollar"
+}
+
+PROMPT_COMMAND=bash_prompt
 
 function up {
       cd `expr "$PWD" : "^\(.*$1[^/]*\)"`
