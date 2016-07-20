@@ -205,8 +205,9 @@ bindsym XF86AudioMute exec amixer -q set Master toggle
 bindsym XF86PowerOff exec ~/.i3/i3-exit
 
 bindsym Mod4+F1 exec firefox
-bindsym Mod4+F2 exec pavucontrol
-bindsym Mod4+F3 exec nautilus
+bindsym Mod4+F2 exec thunderbird
+bindsym Mod4+F3 exec pavucontrol
+bindsym Mod4+F4 exec nautilus
 
 exec --no-startup-id ~/.i3/background.sh
 exec --no-startup-id sleep 10; dropbox start
