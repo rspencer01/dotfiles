@@ -94,6 +94,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias dog='pygmentize -g -O style=colorful,linenos=1'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -140,11 +141,11 @@ bash_prompt()
   local BM="\[\033[1;35m\]"
   local BC="\[\033[1;36m\]"
   local BW="\[\033[1;37m\]"
-  prmptDate="$BK┌($M\t$BK)"
+  prmptDate="$BK┌($Y\t$BK)"
+  prmptWd="$BK($BC\w$BK)"
   prmptUserHost="$BK($C\u$W@$G\h$BK)"
-  prmptWd="$BK($BY\w$BK)"
   prmptGitBranchCmd='__git_ps1 && __git_ps1 (%s)'
-  prmptEndDollar="\n└─┤$W "
+  prmptEndDollar="\n└─>$W "
   # No space before
   function parse_git_dirty {
     [[ $(git status --porcelain 2> /dev/null | tail -n1) != "" ]] && echo -n "$R" || echo -n "$G"
@@ -166,11 +167,23 @@ bash_prompt()
       echo "$commit$BK) "
     fi
   }
-  PS1="\n$prmptDate─$prmptUserHost─$prmptWd$(git_branch)$prmptEndDollar"
+  function whereamifrom {
+    # This is only at startup, but that's ok
+    local SESS_IP=`echo $SSH_CLIENT | awk '{ print $1 }'`
+    local HERE=""
+    if [[ $SESS_SRC != $HERE ]]; then
+      echo -n "$BK─("
+      echo -n "${R}src:$SESS_IP"
+      echo -n "$BK)"
+    fi
+  }
+  PS1="\n$prmptDate─$prmptUserHost$(whereamifrom)─$prmptWd$(git_branch)$prmptEndDollar"
 }
 
 PROMPT_COMMAND=bash_prompt
 
+# Usage:
+#  When in /some/folder/here/and/now type `cd he` to go to /some/folder/here
 function up {
       cd `expr "$PWD" : "^\(.*$1[^/]*\)"`
 }
