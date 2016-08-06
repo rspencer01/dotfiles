@@ -170,8 +170,7 @@ bash_prompt()
   function whereamifrom {
     # This is only at startup, but that's ok
     local SESS_IP=`echo $SSH_CLIENT | awk '{ print $1 }'`
-    local HERE=""
-    if [[ $SESS_SRC != $HERE ]]; then
+    if [[ ! -z "${SESS_IP// }" ]]; then
       echo -n "$BK─("
       echo -n "${R}src:$SESS_IP"
       echo -n "$BK)"
