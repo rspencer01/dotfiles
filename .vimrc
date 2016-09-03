@@ -71,3 +71,4 @@ nmap <C-U> :resize +5<CR>
 
 set lazyredraw
 
+let g:airline_powerline_fonts = 1
