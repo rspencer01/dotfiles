@@ -25,7 +25,7 @@ if has("autocmd")
   " These are required by files
   autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-
+  autocmd FileType groovy setlocal ts=4 sts=4 sw=4 expandtab
   " House customisations
 endif
 
@@ -54,7 +54,10 @@ set foldlevelstart=99
 set foldmethod=indent
 set foldignore=
 
-" Easy navigation commands
+" If showing whitespace, use these characters
+set listchars=tab:▸\ ,eol:¬
+
+" Easy navigation commands between splits
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -71,8 +74,15 @@ syntax on
 set backspace=2
 set scrolloff=5
 
+" Spell options
+nmap <silent> <leader>s :set spell!<CR>
+set spelllang=en_gb
+
 " Always show the status line
 set laststatus=2
+
+set wrap
+set linebreak
 
 " Easy paste mode
 map <leader>pp :setlocal paste!<cr>
