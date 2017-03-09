@@ -141,8 +141,12 @@ bash_prompt()
   local BM="\[\033[1;35m\]"
   local BC="\[\033[1;36m\]"
   local BW="\[\033[1;37m\]"
+  # Shorten
+  function get_shorten_pwd {
+    ~/dotfiles/utils/path_shorten "`pwd`"
+  }
   prmptDate="$BK┌($Y\t$BK)"
-  prmptWd="$BK($BC\w$BK)"
+  prmptWd="$BK($BC$(get_shorten_pwd)$BK)"
   prmptUserHost="$BK($C\u$W@$G\h$BK)"
   prmptGitBranchCmd='__git_ps1 && __git_ps1 (%s)'
   prmptEndDollar="\n└─>$W "
@@ -189,6 +193,7 @@ function up {
 
 ### My programs
 export PATH=$PATH:/home/robert/bin:.
+# This breaks things?
 export LD_LIBRARY_PATH=/usr/local/lib
 export EDITOR=vim
 export ANSIBLE_NOCOWS=1
