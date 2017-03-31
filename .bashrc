@@ -78,6 +78,9 @@ xterm*|rxvt*)
     ;;
 esac
 
+if [ "$(uname)" == "Darwin" ]; then
+  alias ls='ls -G'
+fi
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -191,6 +194,12 @@ function up {
       cd `expr "$PWD" : "^\(.*$1[^/]*\)"`
 }
 
+# Usage:
+#  If I forget some command I wrote a while ago, greps through whole history to see (like ^R but better)
+function howdidi {
+  grep $1 ~/.bash_history | sort | uniq
+}
+
 ### My programs
 export PATH=$PATH:/home/robert/bin:.
 # This breaks things?
@@ -202,7 +211,7 @@ export ANSIBLE_NOCOWS=1
 remind
 
 ### cd bookmarks
-function cdb() { 
+function cdb() {
   USAGE="Usage: cdb [-c|-g|-d|-l] [bookmark]" ;
   if  [ ! -e ~/.cd_bookmarks ] ; then
     mkdir ~/.cd_bookmarks
