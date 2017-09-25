@@ -26,6 +26,7 @@ if has("autocmd")
   autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType groovy setlocal ts=4 sts=4 sw=4 expandtab
+  autocmd FileType rust setlocal ts=4 sts=4 sw=4 expandtab
   " House customisations
 endif
 
@@ -78,6 +79,10 @@ set scrolloff=5
 nmap <silent> <leader>s :set spell!<CR>
 set spelllang=en_gb
 
+" On long lines up and down can move you within the line
+"map j gj
+"map k gk
+
 " Always show the status line
 set laststatus=2
 
@@ -86,8 +91,13 @@ set linebreak
 
 " Easy paste mode
 map <leader>pp :setlocal paste!<cr>
+map <leader>n :noh<cr>
+map <leader>t :NERDTree<cr>
+
 
 au BufNewFile,BufRead *.less set filetype=css
+au BufNewFile,BufRead *.shd set filetype=glsl
+au BufNewFile,BufRead *.ASM set filetype=asm
 
 hi  Folded ctermbg=8
 
@@ -103,9 +113,58 @@ nmap <C-Y> :vertical resize -5<CR>
 nmap <C-I> :resize -5<CR>
 nmap <C-U> :resize +5<CR>
 
-set lazyredraw
+" Setup for indent guide
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=grey  ctermbg=234
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=blue ctermbg=236
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
 
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts=1
+
+set lazyredraw
 
 " BUCK files are python files actually...
 au BufRead,BufNewFile BUCK setfiletype python
+
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_mode_map = { 'mode' : 'passive','active_filetypes':[],'passive_filetypes':['html']}
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
+nmap <F8> :TagbarToggle<CR>
+nmap <F9> :YcmCompleter FixIt<CR>
+
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_show_diagnostics_ui = 0
+
+set mouse=a
+
+set nocompatible
+"filetype plugin on
+syntax on
+let g:vimwiki_list = [{'path': '$HOME/ownCloud/vimwiki/cerebra/wiki'}]
+let g:ycm_filetype_blacklist = {'txt' :1 , 'tex': 1 , 'latex' : 1, 'md' : 1}
+
+:set formatprg=par\ -w80
+
+set runtimepath^=~/.vim/plugin/latexlivepreview.vim
+
+set encoding=utf8
+
+set undodir=/home/robert/.vim/undo/
+set undofile
+
+set t_ZH=[3m
+set t_ZR=[3m
+
+nnoremap <F5> :GundoToggle<CR>

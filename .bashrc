@@ -191,7 +191,7 @@ PROMPT_COMMAND=bash_prompt
 # Usage:
 #  When in /some/folder/here/and/now type `cd he` to go to /some/folder/here
 function up {
-      cd `expr "$PWD" : "^\(.*$1[^/]*\)"`
+      cd "`expr "$PWD" : "^\(.*$1[^/]*\)"`"
 }
 
 # Usage:
@@ -201,6 +201,11 @@ function howdidi {
 }
 
 ### My programs
+PATH="$HOME/bin/android-sdk-linux/tools:$PATH"
+PATH="$HOME/bin/android-studio/gradle/gradle-2.10/bin:$PATH"
+PATH="$HOME/bin/android-studio/bin:$PATH"
+PATH="$HOME/Android/Sdk/platform-tools:$PATH"
+PATH="$HOME/Android/Sdk/ndk-bundle:$PATH"
 export PATH=$PATH:/home/robert/bin:.
 # This breaks things?
 export LD_LIBRARY_PATH=/usr/local/lib
@@ -209,6 +214,9 @@ export ANSIBLE_NOCOWS=1
 
 ### My own custom reminder script
 remind
+curl http://wttr.in/cpt 2>/dev/null | head -n 17 | tail -n 10
+
+/home/robert/src/showerthoughts/shower
 
 ### cd bookmarks
 function cdb() {
@@ -253,3 +261,13 @@ function cdb() {
 
 PERL_MB_OPT="--install_base \"/home/robert/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/robert/perl5"; export PERL_MM_OPT;
+
+export ANDROID_SDK_ROOT=/home/robert/Android/Sdk
+
+PATH="$HOME/.cargo/bin:/usr/local/cuda-7.5/bin:$PATH"
+
+GOROOT=${HOME}/bin/go
+GOPATH=${HOME}/.go
+PATH=${HOME}/bin/.go/bin:${GOPATH}/bin:${HOME}/opt/bin/:$PATH
+
+eval "$(thefuck --alias fuck)"
