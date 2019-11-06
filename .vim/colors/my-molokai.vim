@@ -17,11 +17,14 @@ if &t_Co>255
   hi ErrorMsg     ctermbg=52  ctermfg=82
   hi Visual       ctermbg=238
   hi Comment                  ctermfg=59  cterm=italic
+  hi Normal        ctermbg=none
+  hi CursorLine    ctermbg=none   cterm=none
+  hi Folded        ctermbg=none ctermfg=67
 
-   hi DiffAdd                     ctermbg=22
+  hi DiffAdd       ctermbg=22
   hi DiffChange      ctermbg=236
-   hi DiffDelete      ctermfg=88 ctermbg=52
-   hi DiffText                    ctermbg=238 cterm=bold
+  hi DiffDelete    ctermbg=52  ctermfg=88
+  hi DiffText      ctermbg=238 cterm=bold
 
   hi rustStructure ctermfg=79 cterm=italic
 endif
