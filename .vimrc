@@ -132,15 +132,32 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+" Syntastic setup
+" https://github.com/vim-syntastic/syntastic
+
+" Put an indicator in the status line
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_mode_map = { 'mode' : 'passive','active_filetypes':[],'passive_filetypes':['html']}
+" Populate the location list
 let g:syntastic_always_populate_loc_list = 1
+" Automatically open the loc list
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
+" Run syntax checks on buffer open and
+let g:syntastic_check_on_open = 1
+" Do not run a check when wq'ing
 let g:syntastic_check_on_wq = 0
+" For python we use flake8 suites
+let g:syntastic_python_checkers = ['flake8']
+
+" Limit the syntastic error window to 4 lines in height.
+function! SyntasticCheckHook(errors)
+    if !empty(a:errors)
+        let g:syntastic_loc_list_height = min([len(a:errors), 4])
+    endif
+endfunction
+
 
 nmap <F8> :TagbarToggle<CR>
 nmap <F9> :YcmCompleter FixIt<CR>
