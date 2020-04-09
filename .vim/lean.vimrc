@@ -7,6 +7,7 @@ au BufReadPost,BufNewFile *.lean imap \to →
 au BufReadPost,BufNewFile *.lean imap \iff ↔
 au BufReadPost,BufNewFile *.lean imap \forall ∀
 au BufReadPost,BufNewFile *.lean imap \exists ∃
+au BufReadPost,BufNewFile *.lean imap \nexists ∄
 au BufReadPost,BufNewFile *.lean imap \le ≤
 au BufReadPost,BufNewFile *.lean imap \ge ≥
 au BufReadPost,BufNewFile *.lean imap \neq ≠
@@ -14,6 +15,8 @@ au BufReadPost,BufNewFile *.lean imap \alpha α
 au BufReadPost,BufNewFile *.lean imap \beta β
 au BufReadPost,BufNewFile *.lean imap \gamma γ
 au BufReadPost,BufNewFile *.lean imap \lambda λ
+au BufReadPost,BufNewFile *.lean imap \Gamma Γ
+
 au BufReadPost,BufNewFile *.lean imap \and ∧
 au BufReadPost,BufNewFile *.lean imap \or ∨
 au BufReadPost,BufNewFile *.lean imap \< ⟨
@@ -28,3 +31,6 @@ au BufReadPost,BufNewFile *.lean imap \circ ∘
 au BufReadPost,BufNewFile *.lean imap \comp ℂ
 au BufReadPost,BufNewFile *.lean imap \real ℝ
 au BufReadPost,BufNewFile *.lean imap \inv ⁻¹
+au BufReadPost,BufNewFile *.lean imap \scap ⊓
+au BufReadPost,BufNewFile *.lean imap \scup ⊔
+au BufReadPost,BufNewFile *.lean imap \lto →ₗ
