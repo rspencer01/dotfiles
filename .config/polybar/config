@@ -15,13 +15,14 @@
 ;   The README contains alot of information
 ;
 ;==========================================================
+;
+; vim:ft=dosini
 
 [colors]
-background = ${xrdb:color0:#14171A}
-background-alt = #444
-foreground = ${xrdb:color7:#EFDFDB}
-#foreground = #dfdfdf
-foreground-alt = ${xrdb:color2:#6B7887}
+background = #0014171A
+background-alt = #444444
+foreground = #EFDFDB
+foreground-alt = #6B7887
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
@@ -42,7 +43,7 @@ line-color =
 border-size = 0
 #border-color = #00000000
 
-padding-left = 0
+padding-left = 2
 padding-right = 2
 
 module-margin-left = 1
@@ -51,16 +52,19 @@ module-margin-right = 2
 font-0 = Material\-Design\-Iconic\-Font:pixelsize=12;1
 font-1 = fixed:pixelsize=10;1
 font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
+; Janky pixel symbols
 font-3 = siji:pixelsize=10;1
 
-modules-left = jgmenu wlan eth pulseaudio backlight-acpi spotify
+modules-left = wlan eth pulseaudio backlight spotify
 modules-center = i3
 #xwindow
-;modules-right = mpd filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
+;modules-right = mpd filesystem backlight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
 modules-right = battery date powermenu
 
 tray-position = right
-tray-padding = 10
+tray-padding = 3
+tray-maxsize = 18
+tray-background = ${root.background}
 
 ;wm-restack = bspwm
 wm-restack = i3
@@ -190,12 +194,14 @@ icon-next = 
 label-song-maxlen = 25
 label-song-ellipsis = true
 
-[module/xbacklight]
-type = internal/xbacklight
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+enable-scroll = true
 
 format = <label> <bar>
 label = "  "
-label-foreground = ${colors.foreground-alt}
+label-foreground = ${colors.foreground}
 
 bar-width = 10
 bar-indicator = |
@@ -207,11 +213,6 @@ bar-fill-foreground = #9f78e1
 bar-empty = ─
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
 
 [module/cpu]
 type = internal/cpu
@@ -424,14 +425,6 @@ screenchange-reload = true
 [global/wm]
 margin-top = 0
 margin-bottom = 0
-
-; vim:ft=dosini
-
-[module/jgmenu]
-type=custom/text
-content-padding=2
-content = 
-click-left = rofi -modi run,ssh,window -lines 10 -sidebar-mode -padding 20 -width 50 -columns 2 -show run &
 
 [module/spotify]
 type = custom/script
