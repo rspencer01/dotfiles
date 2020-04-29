@@ -26,5 +26,7 @@ if &t_Co>255
   hi DiffDelete    ctermbg=52  ctermfg=88
   hi DiffText      ctermbg=238 cterm=bold
 
+  hi Conceal ctermbg=none ctermfg=39
+
   hi rustStructure ctermfg=79 cterm=italic
 endif
