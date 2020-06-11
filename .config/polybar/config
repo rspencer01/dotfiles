@@ -16,16 +16,9 @@
 ;
 ;==========================================================
 ;
-; vim:ft=dosini
 
 [colors]
-background = #0014171A
-background-alt = #444444
-foreground = #EFDFDB
-foreground-alt = #6B7887
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
+include-file="colours_dark"
 
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -272,7 +265,7 @@ time = %H:%M
 time-alt = %H:%M:%S
 
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.foreground}
 format-underline = #0a6cf5
 format-padding = 2
 
@@ -286,7 +279,7 @@ label-volume = 
 label-volume-foreground = ${root.foreground}
 
 label-muted = 🔇 
-label-muted-foreground = #666
+label-muted-foreground = ${colors.foreground-alt}
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
@@ -434,3 +427,5 @@ format = <label>
 exec = /home/robert/src/polybar-spotify/spotify_status.py -f '{play_pause} {artist}' -t 10
 click-left = dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 format-underline = #1db954
+
+; vim: set ft=dosini :

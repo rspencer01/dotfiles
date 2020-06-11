@@ -1,0 +1,7 @@
+background = #0004171A
+background-alt = #444444
+foreground = #EFDFDB
+foreground-alt = #6B7887
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
