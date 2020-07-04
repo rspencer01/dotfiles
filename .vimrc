@@ -29,6 +29,7 @@ if has("autocmd")
   autocmd FileType groovy setlocal ts=4 sts=4 sw=4 expandtab
   autocmd FileType rust setlocal ts=4 sts=4 sw=4 expandtab
   " House customisations
+  autocmd FileType tex setlocal conceallevel=2
 endif
 
 " Let me move away from hidden buffers without complaining
@@ -44,7 +45,9 @@ augroup END
 " Autocompleting menu with prompts
 set wildmenu
 " Don't scroll though these files
-set wildignore=*.o,*~,*.pyc
+set wildignore=*.o,*~,*.pyc,*.lock,*.aux,*.dvi,*.fls,*.fdb_latexmk,*.log,*.pdf,*.out,*.tdo,*.bbl,*.blg
+" Nicer, zsh-like completion to maximum substrings
+set wildmode=longest:full,full
 
 set incsearch
 set hlsearch
@@ -108,12 +111,6 @@ colorscheme my-molokai
 " Lets assume we are in a 256 color terminal, shall we?
 set t_Co=256
 
-" Easy way to resize splits
-nmap <C-O> :vertical resize +5<CR>
-nmap <C-Y> :vertical resize -5<CR>
-nmap <C-I> :resize -5<CR>
-nmap <C-U> :resize +5<CR>
-
 " Setup for indent guide
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=grey  ctermbg=234
@@ -142,8 +139,8 @@ set statusline+=%*
 
 " Populate the location list
 let g:syntastic_always_populate_loc_list = 1
-" Automatically open the loc list
-let g:syntastic_auto_loc_list = 1
+" Don't automatically open the loc list
+let g:syntastic_auto_loc_list = 0
 " Run syntax checks on buffer open and
 let g:syntastic_check_on_open = 1
 " Do not run a check when wq'ing
@@ -164,6 +161,10 @@ nmap <F9> :YcmCompleter FixIt<CR>
 
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_show_diagnostics_ui = 0
+let g:ycm_filetype_blacklist = {'notes': 1, 'markdown': 1, 'unite': 1, 'tagbar': 1, 'pandoc': 1, 'qf': 1, 'vimwiki': 1, 'text': 1, 'infolog': 1, 'mail': 1}
+
+" Ultisnips setup
+let g:UltiSnipsExpandTrigger="<c-s>"
 
 set mouse=a
 
@@ -222,3 +223,59 @@ autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
 source ~/.vim/lean.vimrc
+
+" NERDTree setup
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Force sourcing of black
+source ~/.vim/autoload/black.vim
+
+" Escape in the terminal
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+endif
+
+" Airline buffer tabs
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = ' '
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#show_tab_type = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+
+let g:rust_use_custom_ctags_defs = 1  "ignore https://github.com/rust-lang/rust.vim/blob/master/ctags/rust.ctags
+if !exists('g:tagbar_type_rust')
+   let g:tagbar_type_rust = {
+       \ 'ctagstype' : 'rust',
+       \ 'kinds' : [ "https://github.com/universal-ctags/ctags/blob/master/parsers/rust.c#L50-L61",
+         \'M:macro,Macro Definition',
+         \'P:method,A method',
+         \'c:implementation,implementation',
+         \'e:enumerator,An enum variant',
+         \'f:function,Function',
+         \'g:enum,Enum',
+         \'i:interface,trait interface',
+         \'m:field,A struct field',
+         \'n:module,module',
+         \'s:struct,structural type',
+         \'t:typedef,Type Alias',
+         \'v:variable,Global variable',
+       \ ]
+   \ }
+endif
+
+set modeline
+set modelines=5

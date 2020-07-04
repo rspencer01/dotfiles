@@ -28,5 +28,7 @@ if &t_Co>255
 
   hi Conceal ctermbg=none ctermfg=39
 
+  hi Todo ctermfg=34 ctermbg=none cterm=bold
+
   hi rustStructure ctermfg=79 cterm=italic
 endif
