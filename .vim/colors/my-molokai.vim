@@ -26,6 +26,10 @@ if &t_Co>255
   hi DiffDelete    ctermbg=52  ctermfg=88
   hi DiffText      ctermbg=238 cterm=bold
 
+  hi GitGutterAdd    ctermfg=2
+  hi GitGutterChange ctermfg=3
+  hi GitGutterDelete ctermfg=1
+
   hi Conceal ctermbg=none ctermfg=39
 
   hi Todo ctermfg=34 ctermbg=none cterm=bold
