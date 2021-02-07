@@ -8,8 +8,8 @@ imap jj <esc>
 set history=1000
 
 " The numbers down the left are a must in any text editor
-set rnu
-set nu
+set number
+set relativenumber
 
 " Personal whitespace settings
 set tabstop=2
@@ -96,7 +96,7 @@ set linebreak
 " Easy paste mode
 map <leader>pp :setlocal paste!<cr>
 map <leader>n :noh<cr>
-map <leader>t :NERDTree<cr>
+map <leader>t :NERDTreeToggle<cr>
 
 
 au BufNewFile,BufRead *.less set filetype=css
@@ -174,7 +174,7 @@ syntax on
 let g:vimwiki_list = [{'path': '$HOME/ownCloud/vimwiki/cerebra/wiki'}]
 let g:ycm_filetype_blacklist = {'txt' :1 , 'tex': 1 , 'latex' : 1, 'md' : 1}
 
-:set formatprg=par\ -w80
+set formatprg=par\ -w80
 
 set runtimepath^=~/.vim/plugin/latexlivepreview.vim
 
@@ -279,3 +279,5 @@ endif
 
 set modeline
 set modelines=5
+
+nmap <leader>c :noh<CR>
