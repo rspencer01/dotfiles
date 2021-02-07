@@ -18,7 +18,7 @@
 ;
 
 [colors]
-include-file="colours_dark"
+include-file="/home/robert/.config/polybar/colours_dark"
 
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -26,6 +26,7 @@ width = 100%
 height = 27
 radius = 0
 fixed-center = false
+enable-ipc = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -256,10 +257,10 @@ format-disconnected =
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 1
 
 date =
-date-alt = %Y-%m-%d
+date-alt = 1%Y-%m-%d
 
 time = %H:%M
 time-alt = %H:%M:%S
