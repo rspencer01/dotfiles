@@ -222,7 +222,7 @@ augroup END
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
-source ~/.vim/lean.vimrc
+source ~/.vim/rc/lean.vimrc
 
 " NERDTree setup
 let NERDTreeMinimalUI = 1
