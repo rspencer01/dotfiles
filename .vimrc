@@ -1,5 +1,7 @@
-" Install all our plugins
-execute pathogen#infect()
+source ~/.vim/rc/plugins.vimrc
+source ~/.vim/rc/fzf.vimrc
+source ~/.vim/rc/snippets.vimrc
+source ~/.vim/rc/startify.vimrc
 
 " I can't live with only esc!
 imap jj <esc>
@@ -229,9 +231,6 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" Force sourcing of black
-source ~/.vim/autoload/black.vim
 
 " Escape in the terminal
 if has('nvim')
